@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>
+      PNG Example
+    </title>
+    <style type="text/css">
+      body {
+        font-family: Sans-Serif;
+        background: silver;
+      }
+    </style>
+    <script src="png.js" type="text/javascript"></script>
+    <script src="../../Bytes.js" type="text/javascript"></script>
+    <script type="text/javascript">   
+      var x_in_box = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster(
+            1, // bit depth (only 1, 2, 4, and 8 are valid)
+            0, // greyscale color type code
+            [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+             [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+             [0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0],
+             [0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0],
+             [0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0],
+             [0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0],
+             [0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0],
+             [0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0],
+             [0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0],
+             [0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0],
+             [0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0],
+             [0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0],
+             [0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0],
+             [0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0],
+             [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+          )
+        ).encode_base64();
+        
+        var x_in_box_transparent = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster(
+            4, // bit depth (only 1, 2, 4, and 8 are valid)
+            3, // greyscale color type code
+            [[  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0],
+             [  0,   0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0, 1+0,   0,   0],
+             [  2, 1+2,   2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2,   2, 1+2,   2],
+             [  2, 1+2, 1+2,   2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2, 1+2,   2, 1+2, 1+2,   2],
+             [  4, 1+4, 1+4, 1+4,   4, 1+4, 1+4, 1+4, 1+4, 1+4, 1+4,   4, 1+4, 1+4, 1+4,   4],
+             [  4, 1+4, 1+4, 1+4, 1+4,   4, 1+4, 1+4, 1+4, 1+4,   4, 1+4, 1+4, 1+4, 1+4,   4],
+             [  6, 1+6, 1+6, 1+6, 1+6, 1+6,   6, 1+6, 1+6,   6, 1+6, 1+6, 1+6, 1+6, 1+6,   6],
+             [  6, 1+6, 1+6, 1+6, 1+6, 1+6, 1+6,   6,   6, 1+6, 1+6, 1+6, 1+6, 1+6, 1+6,   6],
+             [  8, 1+8, 1+8, 1+8, 1+8, 1+8, 1+8,   8,   8, 1+8, 1+8, 1+8, 1+8, 1+8, 1+8,   8],
+             [  8, 1+8, 1+8, 1+8, 1+8, 1+8,   8, 1+8, 1+8,   8, 1+8, 1+8, 1+8, 1+8, 1+8,   8],
+             [  10,1+10,1+10,1+10,1+10,  10,1+10,1+10,1+10,1+10,  10,1+10,1+10,1+10,1+10,  10],
+             [  10,1+10,1+10,1+10,  10,1+10,1+10,1+10,1+10,1+10,1+10,  10,1+10,1+10,1+10,  10],
+             [  12,1+12,1+12,  12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,  12,1+12,1+12,  12],
+             [  12,1+12,  12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,1+12,  12,1+12,  12],
+             [  14,  14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,1+14,  14,  14],
+             [  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14,  14]]
+          ),
+          [[0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF],
+           [0x00,0x00,0x00],[0xFF,0xFF,0xFF]], // The palette repeats ... 
+          [0xFF,0xFF,
+           0xC0,0xC0,
+           0xA0,0xA0,
+           0x80,0x80,
+           0x60,0x60,
+           0x40,0x40,
+           0x20,0x20,
+           0x00,0x00]      // because successive blacks and whites are made more transparent.
+        ).encode_base64();
+        
+        function rainbow_array(background){
+          var rows = [];
+          for (var i = 0; i<16; i++) {
+            var row = [];
+            for (var j = 0; j<16; j++) {
+              var dist = Math.round(Math.sqrt(i*i+j*j));
+              var color = (dist < 8 || dist > 15) ? background
+                : 16 - dist;
+              row.push(color);
+            }
+            rows.unshift(row);
+          }
+          return rows;
+        }
+        
+        var greybow = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster(
+            4, // bit depth (only 1, 2, 4, and 8 are valid)
+            0, // greyscale color type code
+            rainbow_array(15)
+          )
+        ).encode_base64();
+        
+        var rainbow_palette = 
+          [[0xFF,0xFF,0xFF], // white
+           [0xFF,0x00,0x00],       // red ...
+           [0xFF,0xA5,0x00],
+           [0xFF,0xFF,0x00],
+           [0x00,0xFF,0x00],
+           [0x00,0x80,0x00],
+           [0x00,0x80,0x80],
+           [0x00,0x00,0xFF],
+           [0x81,0x00,0x80]]    // ... purple
+           // no obligation to define as many colors as bit depth allows.
+        
+        var rainbow = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster(
+            4, // bit depth 
+            3, // palette color type code
+            rainbow_array(0)
+          ),
+          rainbow_palette
+        ).encode_base64();
+        
+        var rainbow_alpha = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster(
+            4, // bit depth 
+            3, // palette color type code
+            rainbow_array(0)
+          ),
+          rainbow_palette,
+          [0] // give the first entry, white, full transparency: the rest default to opaque.
+        ).encode_base64();
+        
+        function color_wheel_array(rad,alpha){
+          // given a radius,
+          // and optionally a function that given x and y returns alpha,
+          // returns an arrary of arrays of RGB triples forming a color wheel
+          // (or RGBA quads if alpha function was given.
+          var rows = [];
+          for (var y = 0.5-rad; y<rad; y++) {
+            var row = [];
+            for (var x = 0.5-rad; x<rad; x++) {
+              var theta = Math.atan2(y,x);
+              var rgb = [
+                Math.floor(127 * (1+Math.sin(theta))),
+                Math.floor(127 * (1+Math.sin(theta + 2 * Math.PI / 3))),
+                Math.floor(127 * (1+Math.sin(theta - 2 * Math.PI / 3)))
+              ];
+              if (alpha instanceof Function) {
+                rgb.push(alpha(x,y));
+              }
+              row.push(rgb);
+            }
+            rows.push(row);
+          }
+          return rows;
+        }
+        
+        var color_wheel = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster_rgb(
+            8, // bit depth 
+            2, // rgb color type code
+            color_wheel_array(8)
+          )
+        ).encode_base64();
+        
+        var radius = 8;
+        var color_wheel_alpha = $data_demo.mode.png.from_Raster(
+          new $data_demo.mode.png.Raster_rgb(
+            8, // bit depth 
+            6, // rgb+alpha color type code
+            color_wheel_array(radius,
+              function(x,y){return 4*Math.max(1,radius*radius-(x*x+y*y))-1}
+            )
+          )
+        ).encode_base64();
+        
+      function k(s) {
+        // given a string,
+        // return its size in the form "1.0 K".
+        return Math.round(s.length / 102.4)/10 + " K";
+      }
+      
+      document.write(
+        "All examples are 16 by 16 pixels, for the sake of comparison.\
+         <br/>Should be a B&amp;W X in a box ("+k(x_in_box)+"): \
+           <img src='data:image/png;base64,"+x_in_box+"'/>\
+         <br/>Should be a B&amp;W X in a box, with the bottom fading to transparent ("+k(x_in_box_transparent)+"): \
+           <img src='data:image/png;base64,"+x_in_box_transparent+"'/>\
+         <br/>Should be a greyscale rainbow ("+k(greybow)+"): \
+           <img src='data:image/png;base64,"+greybow+"'/>\
+         <br/>Should be a real rainbow ("+k(rainbow)+"): \
+           <img src='data:image/png;base64,"+rainbow+"'/>\
+         <br/>Should be a real rainbow, with the background transparent ("+k(rainbow_alpha)+"): \
+          <img src='data:image/png;base64,"+rainbow_alpha+"'/>\
+         <br/>Should be a 24-bit color wheel ("+k(color_wheel)+"): \
+           <img src='data:image/png;base64,"+color_wheel+"'/>\
+         <br/>Should be a fuzzy 24-bit color wheel, with alpha fading toward the edge ("+k(color_wheel_alpha)+"): \
+           <img src='data:image/png;base64,"+color_wheel_alpha+"'/>"
+      );
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

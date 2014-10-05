@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script type="text/javascript">
+   // copy and paste from http://getfirebug.com/developer/api/firebug1.5/symbols/src/lite_firebugx.js.html:
+   // defines stubs for console calls, if you don't actually have a console.
+   if (!window.console || !console.firebug)
+     {
+       var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
+       "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
+   
+       window.console = {};
+       for (var i = 0; i < names.length; ++i)
+         window.console[names[i]] = function() {}
+     }
+  </script>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/qunit/qunit-1.15.0.js"></script>
+  <script type="text/javascript" src="../base.js"></script>
+  <script type="text/javascript" src="../Bytes.js"></script>
+  <script type="text/javascript" src="test.js"></script>
+  
+  <script type="text/javascript" src="../modes/text/text.js"></script>
+  <script type="text/javascript" src="../modes/html/html.js"></script>
+  <script type="text/javascript" src="../modes/png/png.js"></script>
+  <script type="text/javascript" src="../modes/png/png-ui.js"></script>
+  <script type="text/javascript" src="../modes/png/png-test.js"></script>
+  <script type="text/javascript" src="../modes/midi/midi.js"></script>
+  <script type="text/javascript" src="../modes/midi/midi-ui.js"></script>
+  <script type="text/javascript" src="../modes/midi/midi-test.js"></script>
+  
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.15.0.css" type="text/css" media="screen" />
+</head>
+<body>
+  <h1 id="qunit-header">data-demo tests</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture"></div>
+</body>
+</html>

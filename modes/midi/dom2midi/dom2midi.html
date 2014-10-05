@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <!--
+  
+This is released under an MIT License:
+
+
+Copyright (C) 2011 by Chuck McCallum
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+  -->
+  <head>
+    <title>
+      dom2midi
+    </title>
+    <style type="text/css">
+      body {
+        font-family: Sans-Serif;
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+    <script src="bookmark_maker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      jQuery(function($){
+        $("#bookmark").attr("href",bookmark_maker(
+          {
+            "comment":
+              'Just one short note per node.',
+            "init":
+              'var pitch=50;\nvar time=0;\nvar length=10;',
+            "pre":
+              'music.add_note({\n'+
+              '  "pitch":pitch,\n'+
+              '  "start":time*length,\n'+
+              '  "stop":(time+1)*length,\n'+
+              '  "instrument":1\n'+
+              '});\n'+
+              'pitch++;time++;',
+            "post":
+              'pitch--;time++;',
+            "final":
+              ''
+          },
+          0
+        ));
+      })
+    </script>
+  </head>
+  <body>
+    <ol>
+      <li>Drag <a id="bookmark">dom2midi</a> to your bookmarks.</li>
+      <li>On any page, click on the bookmark to generate a MIDI file from the structure of the page.</li>
+      <li>You can then also change and save the settings which determine the relationship of page structure to instruments, pitches, and rhythms.</li>
+    </ol>
+    (I believe that this only works in Firefox: IE doesn't handle either bookmarklets or data URIs well; Chrome just has a problem with midi data in data URIs.) (It's also got some out-right bugs on longer, more complex pages: the generated MIDI is corrupt in some way.) 
+  </body>
+</html>

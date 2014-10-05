@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <!--
+  
+This is released under an MIT License:
+
+
+Copyright (C) 2011 by Chuck McCallum
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+  -->
+  <head>
+    <title>
+      "data:" demo
+    </title>
+    <style type="text/css">
+      body {
+        font-family: Sans-Serif;
+      }
+      .logo {
+        float: left;
+        margin-top: -8px;
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+      }
+      #navigate > select {
+        float: left;
+        margin-right: 1em;
+      }
+    </style>
+    <script type="text/javascript">
+     // copy and paste from http://getfirebug.com/developer/api/firebug1.5/symbols/src/lite_firebugx.js.html:
+     // defines stubs for console calls, if you don't actually have a console.
+     if (!window.console || !console.firebug)
+       {
+         var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
+         "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
+     
+         window.console = {};
+         for (var i = 0; i < names.length; ++i)
+           window.console[names[i]] = function() {}
+       }
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="base.js" type="text/javascript"></script>
+    <script src="Bytes.js" types="text/javascript"></script>
+    <script src="modes/text/text.js" type="text/javascript"></script>
+    <script src="modes/html/html.js" type="text/javascript"></script>
+    <script src="modes/png/png.js" type="text/javascript"></script>
+    <script src="modes/png/png-ui.js" type="text/javascript"></script>
+    <script src="modes/midi/midi.js" type="text/javascript"></script>
+    <script src="modes/midi/midi-ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function(){
+
+        var my = $data_demo;
+      
+        my.add_controls("#controls");
+      
+        // Event handlers
+  
+        $("#output > button").click(
+          function(){
+            var current = $('#navigate select').val();
+            var uri = my.mode[current].get_uri();
+            $("#output > a").attr("href",uri);
+            $("#output > iframe").attr("src",uri);
+            $("#output > *").show();
+          }
+        );
+        $("#intro button").click(
+          function(){
+            $("#intro").slideUp();
+          }
+        );
+        $("#navigate select").change(
+          // Assume that touching any control might change state,
+          // so we need to hide the output until we explicitly recalculate it.
+          function(){
+            $("#output *").not("button").hide();
+            location.hash = "#"+this.value;
+            my.set_mode(this.value);
+            document.title = this.value + ' "data:" demo';
+          }
+        );
+        
+        // on load, change selector to that in url anchor, and send change event.
+        $('#navigate select').val(location.hash.substring(1) || "png").change();
+      })
+    </script>
+  </head>
+  <body>
+    <div id="intro">
+      <img src="data-demo.png" class="logo" alt="data demo logo"/>
+      <p>
+        This is a demonstration of 
+        <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a> 
+        creation in javascript. 
+        Support for data URIs varies across browsers,
+        and will also depend on the length of the URI in question.
+      </p>
+      <p>
+        This project is primarily educational: in any other common language there
+        are already libraries for constructing most any type of file. Precisely
+        because it's kind of silly to do it in javascript, libraries do not always
+        exist here. This project is a place to learn how things work at a fairly 
+        low level, without it being too obvious that it's just wheel-reinvention.
+      </p>
+      <button>close intro</button>
+      <hr/>
+    </div>
+    <div id="controls">
+    </div>
+  </body>
+</html>

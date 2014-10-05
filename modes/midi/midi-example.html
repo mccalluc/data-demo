@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>
+      midi Example
+    </title>
+    
+    <script src="midi.js" type="text/javascript"></script>
+    <script src="../../Bytes.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">    
+      function play_music() {
+        var iframe = document.createElement('iframe');
+        var music = new $data_demo.mode.midi.Music(128);
+        var mult = 32;
+        for (var i = 0; i<50; i+= (i%12==4 || i%12==11) ? 1 : 2) { 
+          music.add_note({
+                'start': i*mult,
+                'stop': (i+1)*mult,
+                'pitch': i+50,
+                'instrument': $data_demo.mode.midi.instrument.VIOLIN
+              });
+        };
+        var src = "data:audio/midi;base64,"+music.get_bytes().encode_base64();
+        iframe.setAttribute('src',src);
+        iframe.setAttribute('style','position: absolute; top: -10000px; left: -10000px;');
+        document.getElementsByTagName('body')[0].appendChild(iframe);
+      }
+    </script>
+
+  </head>
+  <body onload="play_music()">
+    After a moment, a dynamically generated midi file should start playing, if this is in Firefox. There are some quirks here I don't understand: 
+      <ul>
+        <li>Why is there sometimes a pause before it begins? Six seconds for me. The script itself completes almost instantaneously, and if I call <code>play_music()</code> from the console, it starts immediately. <button onclick="play_music()">Try it!</button></li>
+        <li>Why couldn't I get a simple <code>&lt;object&gt;</code> or <code>&lt;embed&gt;</code>to work?</li>
+      </ul>
+    I should look at these issues a bit more.
+  </body>
+
+</html>
