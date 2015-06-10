@@ -26,13 +26,13 @@ if (!("$data_demo" in window)) {
     mode.show();
     
   }
-
+  
   mode.get_uri = function() {
-    return "data:INSERT/MIMETYPE;base64,"+this.get_data().encode_base64();
+    return "data:image/gif;base64,"+this.get_data().encode_base64();
   };
 
   mode.get_data = function() {
-    // TODO
+    return mode.stub();
   }
 
 	
